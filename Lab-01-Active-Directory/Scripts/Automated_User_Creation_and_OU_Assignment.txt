@@ -1,0 +1,20 @@
+"users name" | ForEach-Object {
+    New-ADUser `
+    -Name $_ `
+    -SamAccountName $_ `
+    -UserPrincipalName "$_@corp.local" `
+    -Path "OU=HR,DC=corp,DC=local" `
+    -AccountPassword (ConvertTo-SecureString "Password123!" -AsPlainText -Force) `
+    -Enabled $true
+}
+
+EX:
+"Sarah","Emily","David" | ForEach-Object {
+    New-ADUser `
+    -Name $_ `
+    -SamAccountName $_ `
+    -UserPrincipalName "$_@corp.local" `
+    -Path "OU=HR,DC=corp,DC=local" `
+    -AccountPassword (ConvertTo-SecureString "Password123!" -AsPlainText -Force) `
+    -Enabled $true
+}
